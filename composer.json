@@ -1,0 +1,26 @@
+{
+    "name": "borobudur/ddd",
+    "type": "library",
+    "description": "Borobudur Ddd Component",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Iqbal Maulana",
+            "email": "iq.bluejack@gmail.com"
+        }
+    ],
+    "require": {
+        "borobudur/identifier": "~0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Borobudur\\Component\\Ddd\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
