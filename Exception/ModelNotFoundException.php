@@ -33,36 +33,30 @@ class ModelNotFoundException extends Exception
     /**
      * @var string
      */
-    protected $format = '%model% with id [%ids] was not found';
+    protected $format = '"%model%" with id [%ids%] was not found';
 
     public function __construct(string $modelClass, array $ids, Throwable $previous = null)
     {
         $this->modelClass = $modelClass;
         $this->ids = $ids;
-        $params = [];
-
-        if (null !== $this->params) {
-            $params = ['ids' => implode(', ', $ids)];
-        }
+        $params = ['ids' => implode(', ', $ids), 'model' => $this->getModelName()];
 
         parent::__construct($this->format, $params, 404);
     }
 
     protected static function underscore(string $text): string
     {
-        return strtolower(
-            preg_replace(
-                ['/([A-Z]+)([A-Z][a-z])/', '/([a-z\d])([A-Z])/'],
-                ['\\1_\\2', '\\1_\\2'],
-                str_replace('_', '.', $text)
-            )
+        return preg_replace(
+            ['/([A-Z]+)([A-Z][a-z])/', '/([a-z\d])([A-Z])/'],
+            ['\\1_\\2', '\\1_\\2'],
+            str_replace('_', '.', $text)
         );
     }
 
     protected function getModelName(): string
     {
         return self::underscore(
-            substr($this->modelClass, strrpos($this->modelClass, '\\'))
+            substr($this->modelClass, strrpos($this->modelClass, '\\') + 1)
         );
     }
 }
