@@ -11,7 +11,8 @@
         }
     ],
     "require": {
-        "borobudur/identifier": "~0.1"
+        "borobudur/identifier": "~0.1",
+        "borobudur/collection": "~0.1"
     },
     "autoload": {
         "psr-4": {
