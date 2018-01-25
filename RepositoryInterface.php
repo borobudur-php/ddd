@@ -65,4 +65,11 @@ interface RepositoryInterface
      * @param Model $model
      */
     public function save(Model $model): void;
+
+    /**
+     * Remove model from persistent storage.
+     *
+     * @param Model $model
+     */
+    public function remove(Model $model): void;
 }
